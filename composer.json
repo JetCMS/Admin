@@ -19,6 +19,5 @@
         "psr-4": {
             "JetCMS\\Admin\\": "src/"
         }
-    },
-    "minimum-stability": "dev"  
+    }  
 }
