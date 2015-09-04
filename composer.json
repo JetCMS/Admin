@@ -16,7 +16,7 @@
     "require-dev": {
 
         "sleeping-owl/admin": "dev-development#49a3a4ccd1b2a60fe7f05c1441be6bae7ff2cc27",
-        "sleeping-owl/admin-lte-template": "dev-master"
+        "sleeping-owl/admin-lte-template": "dev-master#0298c53eb120dab7185dbcdddb8ba60ed62044d7"
     },
     "autoload": {
         "psr-4": {
