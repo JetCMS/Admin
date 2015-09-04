@@ -11,7 +11,6 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "baum/baum": "dev-master",
         "sleeping-owl/admin": "dev-development",
         "sleeping-owl/admin-lte-template": "dev-master",
         "jetcms/models" : "dev-master"
