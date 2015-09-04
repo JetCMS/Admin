@@ -11,12 +11,9 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "baum/baum": "~1.1"
-    },
-    "require-dev": {
-
-        "sleeping-owl/admin": "dev-development#49a3a4ccd1b2a60fe7f05c1441be6bae7ff2cc27",
-        "sleeping-owl/admin-lte-template": "dev-master#0298c53eb120dab7185dbcdddb8ba60ed62044d7"
+        "baum/baum": "~1.1",
+        "sleeping-owl/admin": "dev-development",
+        "sleeping-owl/admin-lte-template": "dev-master"
     },
     "autoload": {
         "psr-4": {
