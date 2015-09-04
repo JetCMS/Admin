@@ -1,0 +1,24 @@
+{
+    "name": "JetCMS/Admin",
+    "description": "CMS",
+    "keywords": ["laravel", "cms", "controllers"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex. Suroviy",
+            "email": "suroviy@bk.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "sleeping-owl/admin": "dev-development",
+        "sleeping-owl/admin-lte-template": "dev-master",
+        "baum/baum": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "JetCMS\\Admin\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"  
+}
