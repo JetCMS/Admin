@@ -1,5 +1,5 @@
 {
-    "name": "JetCMS/Admin",
+    "name": "jetcms/admin",
     "description": "CMS",
     "keywords": ["laravel", "cms", "controllers"],
     "license": "MIT",
