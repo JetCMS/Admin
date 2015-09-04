@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.5.9",
         "sleeping-owl/admin": "dev-development#49a3a4ccd1b2a60fe7f05c1441be6bae7ff2cc27",
         "sleeping-owl/admin-lte-template": "dev-master",
-        "baum/baum":  "~1.1",
+        "baum/baum": "~1.1",
     },
     "autoload": {
         "psr-4": {
