@@ -15,8 +15,8 @@ return [
 	/*
 	 * Middleware to use in admin routes
 	 */
-	//'middleware'              => ['admin.auth'],
-	'middleware'              => ['jetcms.admin'],
+	'middleware'              => ['\JetCMS\Admin\Http\Middleware\admin'],
+	//'middleware'              => ['jetcms.admin'],
 	/*
 	 * Path to admin bootstrap files directory
 	 * Default: app_path('Admin')
