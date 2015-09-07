@@ -66,7 +66,7 @@ class JBottonLink extends BaseFormItem
 		{
 			if (!$this->instance->id)
 			{
-				return view('jetcms.admin.formitem.botton_link',['lable'=>$this->label,'url'=>false,'labelNonObject'=>$this->labelNonObject]);;
+				return view('jetcms::admin.formitem.botton_link',['lable'=>$this->label,'url'=>false,'labelNonObject'=>$this->labelNonObject]);;
 			}	
 		}
 
@@ -80,6 +80,6 @@ class JBottonLink extends BaseFormItem
 		{
 			$url = str_replace(':'.$key, $value, $url);
 		}		
-		return view('jetcms.admin.formitem.botton_link',['lable'=>$this->label,'url'=>$url]);
+		return view('jetcms::admin.formitem.botton_link',['lable'=>$this->label,'url'=>$url]);
 	}
 }

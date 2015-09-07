@@ -1,8 +1,9 @@
-<?php
+<?php namespace JetCMS\Admin\Http\Middleware;
 
-namespace JetCMS\Admin\Http\Middleware;
-
+use AdminAuth;
 use Closure;
+use Route;
+use URL;
 use Illuminate\Contracts\Auth\Guard;
 
 class Admin
@@ -34,25 +35,44 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
+        if (AdminAuth::check() and Route::currentRouteName() == 'admin.logout')
+        {
+            return $next($request);
+        }
+
+        if (AdminAuth::guest())
+        {
+            if ($request->ajax())
+            {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
+            } 
+            else
+            {
+                return redirect()->guest(route('admin.login'));
             }
         }
-		$user_access = [];
-		foreach (config('jetcms.setting.auth.user_access') as $val) {
-			$user_access[] = mb_strtolower($val);
-		}
-		
-		if (!in_array(mb_strtolower($this->auth->user()->email), $user_access)) {
-			if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
+        else
+        {
+            $user_access = [];
+            foreach (config('jetcms.setting.auth.user_access') as $val) {
+                $user_access[] = mb_strtolower($val);
             }
-		}
+
+            if (!in_array(mb_strtolower(AdminAuth::user()->email), $user_access)) 
+            {
+                if ($request->ajax()) 
+                {
+                    return response('Unauthorized.', 401);
+                } 
+                else 
+                {
+                    return redirect()->guest(route('admin.401'));
+                }
+            }
+
+        }
+
+		
 
         return $next($request);
     }

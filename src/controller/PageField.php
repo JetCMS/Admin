@@ -56,13 +56,6 @@ class PageField extends BaseController
 
 		$display->with('page');
 
-		if (Input::has('page'))
-		{
-			$display->actions([
-				Column::action('show')->value('Перети на страницу')->icon('fa-share')->label('Label')->url('/'.config('admin.prefix').'/pages/'.Input::get('page').'/edit'),
-			]);
-		}
-
 		return $display;
 	}
 

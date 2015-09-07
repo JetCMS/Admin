@@ -7,6 +7,11 @@ Route::controllers([
 
 Route::get('home', 'HomeController@index');
 
+Route::get('/admin/401', array('as' => 'admin.401', function()
+{
+    return view('jetcms::admin.401',['title'=>401]);
+}));
+
 Route::get('/', function () {
 	if (!Auth::check())
 	{

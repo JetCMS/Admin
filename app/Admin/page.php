@@ -75,7 +75,7 @@ Admin::model(App\Page::class)->title('Pages')->display(function ()
 
 				FormItem::select('template', 'Template')->options($templateOptions),
 
-				FormItem::timestamp('publish', 'Publish'),
+				FormItem::timestamp('publish', 'Publish')->defaultValue(Carbon::now()),
 				FormItem::checkbox('active')->label('Active'),
 
 				FormItem::jBottonLink()->url('page_fields?page=:id')->label('Дополнительные поля')->labelNonObject('Требуется сохранить объект')
