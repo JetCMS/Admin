@@ -1,5 +1,5 @@
 <?php return [
-		'label' => 'Ð“Ð»Ð°Ð²Ð½Ð°Ñ',
+		'label' => 'Ãëàâíàÿ',
 		'page_filed' => [
 			
 			'image' => [

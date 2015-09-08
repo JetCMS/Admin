@@ -55,9 +55,23 @@ class BaseController
 
 			$display = $this->display();
 
-			$display->filters($thisInitModel->filters());
-			$display->columnFilters($thisInitModel->columnFilters());			
-			$display->columns($thisInitModel->column());
+			$filter = $thisInitModel->filters();
+			if (sizeof($filter)>0)
+			{
+				$display->filters($filter);
+			}
+
+			$columnFilters = $thisInitModel->columnFilters();
+			if (sizeof($columnFilters)>0)
+			{
+				$display->columnFilters($columnFilters);			
+			}
+			
+			$columns = $thisInitModel->column();
+			if (sizeof($columns)>0)
+			{
+				$display->columns($columns);
+			}
 
 			return $display;
 		})->createAndEdit(function ($modelId) use($thisInitModel)

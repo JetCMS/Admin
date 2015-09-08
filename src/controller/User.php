@@ -10,7 +10,7 @@ use ColumnFilter;
 use Column;
 use FormItem;
 
-use App\Role;
+use App\Role as Model_Role;
 
 use JetCMS\Admin\BaseController;
 
@@ -25,7 +25,7 @@ class User extends BaseController
 
 	protected function filter()
 	{
-		$roleName = Role::where(['id'=>Input::get('role')])->first();
+		$roleName = Model_Role::where(['id'=>Input::get('role')])->first();
 		$roleName = ($roleName) ? $roleName->name : null;
 
 		return [			
