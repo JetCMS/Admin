@@ -30,6 +30,19 @@ class Page extends BaseController
 		return $display;
 	}
 
+	protected function columnFilters ()
+	{
+		return [
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			ColumnFilter::select()->options(Model_Menu::getNestedList('level_lable'))
+		];
+	}
+
 	public function column ()
 	{
 		return [
@@ -71,13 +84,15 @@ class Page extends BaseController
 				}
 			})->orderable(false),
 
+			Column::string('menu_id')->label('menu_id'),
+
 			Column::custom()->label('active')->callback(function ($instance)
 			{
 				if ($instance->active)
 				{
 					return ' <span><i class="fa fa-chevron-down" data-toggle="tooltip" title="" data-original-title="Active"></i></span>';
 				}
-			 })->orderable(false),
+			})->orderable(false),
 		];
 	}
 
@@ -102,6 +117,8 @@ class Page extends BaseController
 					FormItem::select('template', 'Template')->options($templateOptions),
 
 					FormItem::timestamp('publish', 'Publish')->defaultValue(Carbon::now()),
+					FormItem::text('sort', 'Sort'),
+					FormItem::checkbox('list_in')->label('List in')->defaultValue(true),
 					FormItem::checkbox('active')->label('Active'),
 
 					FormItem::jBottonLink()->url('page_fields?page=:id')->label('Дополнительные поля')->labelNonObject('Требуется сохранить объект')
