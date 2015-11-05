@@ -41,6 +41,8 @@ class User extends BaseController
 	public function column ()
 	{
 		return [
+			Column::checkbox(),
+			Column::image('avatar')->label('Avatar'),
 			Column::string('name')->label('Name'),
 			Column::string('email')->label('Email'),
 			Column::lists('roles.name')->label('Roles')->orderable(false),

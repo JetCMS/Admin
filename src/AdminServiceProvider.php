@@ -16,7 +16,6 @@ class AdminServiceProvider extends ServiceProvider {
 
             $this->publishes([
                 __DIR__.'/../resources' => base_path('resources'),
-				__DIR__.'/../app/' => base_path('/app'),
                 __DIR__.'/../config/' => base_path('/config')
             ]);
             include __DIR__.'/../routes.php';

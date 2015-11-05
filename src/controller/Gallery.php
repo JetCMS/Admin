@@ -31,12 +31,13 @@ class Gallery extends BaseController
 	public function column ()
 	{
 		return [
+			Column::checkbox(),
 			Column::string('name')->label('Name'),
 			Column::string('lable')->label('lable'),
 			Column::custom()->label('Images')->callback(function ($instance)
 			{
 			    return sizeof($instance->images).
-			    ' <a href="/'.config('admin.prefix').'/gallery_images?gallery='.$instance->id.'"><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="" data-original-title="Show"></i></a>';
+			    ' <a href="/'.config('admin.prefix').'/images?gallery='.$instance->id.'"><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="" data-original-title="Show"></i></a>';
 			})->orderable(false),
 			Column::custom()->label('active')->callback(function ($instance)
 			{

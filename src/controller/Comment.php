@@ -31,8 +31,10 @@ class Comment extends BaseController
 	public function column ()
 	{
 		return [
-			Column::string('lable')->label('lable'),
+			Column::checkbox(),
+			Column::string('content')->label('content'),
 			Column::string('user.name')->label('User'),
+			Column::string('comment_id')->label('comment_id'),
 			Column::custom()->label('active')->callback(function ($instance)
 			{
 				if ($instance->active)
@@ -48,7 +50,7 @@ class Comment extends BaseController
 		return [
 			FormItem::columns()->columns([
 		    	[
-		    		FormItem::text('lable', 'lable')->required(),
+		    		FormItem::text('lable', 'lable'),
 					
 		    	],[
 		    		FormItem::select('user_id', 'User')->model('App\User')->display('name'),

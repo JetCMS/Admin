@@ -1,12 +1,7 @@
 <?php namespace JetCMS\Admin\Controller;
 
-use Input;
-
-use Admin;
-use AdminForm;
-use AdminDisplay;
+use AdminAuth;
 use Filter;
-use ColumnFilter;
 use Column;
 use FormItem;
 use Carbon;
@@ -18,6 +13,10 @@ use JetCMS\Admin\BaseController;
 
 class Page extends BaseController
 {
+
+	protected $import_disble = ['page_field_to_array','make_alias','fields'];
+	protected $import_model_name = 'page';
+
 	public function getModelClass()
 	{
 		return Model_Page::class;
@@ -26,37 +25,32 @@ class Page extends BaseController
 	protected function display()
 	{
 		$display = parent::display();
-		$display->with('accessPages','menu');
+		$display->with('fields','user');
+/*
+		$display->apply(function ($query)
+		{
+			$query->where('context', 'page');
+		});
+*/
+		$display->actions($this->importAction());
+
 		return $display;
 	}
 
-	protected function columnFilters ()
+	protected function filters ()
 	{
 		return [
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			ColumnFilter::select()->options(Model_Menu::getNestedList('level_lable'))
+			Filter::field('context')
 		];
 	}
 
 	public function column ()
 	{
 		return [
+			Column::checkbox(),
 			Column::image('image')->label('Image'),
 			Column::string('title')->label('Title'),
 			Column::string('alias')->label('Alias'),
-			Column::lists('accessPages.name')->label('Access')->orderable(false),
-
-			Column::custom()->label('Page Fields')->callback(function ($instance)
-			{
-			    return sizeof($instance->pagefield).
-			    ' <a href="/'.config('admin.prefix').'/page_fields?page='.$instance->id.'"><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="" data-original-title="Show"></i></a>';
-			})->orderable(false),
-
 			Column::custom()->label('menu')->callback(function ($instance)
 			{
 				if ($instance->menu)
@@ -70,7 +64,7 @@ class Page extends BaseController
 						$title = $instance->menu->lable;
 					}
 
-					if (substr($instance->menu->url,1) == $instance->alias)
+					if (substr($instance->menu->url,1) == $instance->make_alias)
 					{
 						$alias = $instance->menu->url;
 					}
@@ -83,9 +77,6 @@ class Page extends BaseController
 					return $title.'<br>'.$alias.'<br>'.$botton;
 				}
 			})->orderable(false),
-
-			Column::string('menu_id')->label('menu_id'),
-
 			Column::custom()->label('active')->callback(function ($instance)
 			{
 				if ($instance->active)
@@ -98,11 +89,6 @@ class Page extends BaseController
 
 	public function create ()
 	{
-		$templateOptions = [];
-
-		foreach (config('jetcms.page_template') as $key => $val) {
-			$templateOptions[$key] = $val['label'].' | '.$key;
-		}
 
 		return [
 			FormItem::columns()->columns([
@@ -110,23 +96,37 @@ class Page extends BaseController
 					FormItem::text('title', 'Title')->required(),
 					FormItem::text('alias', 'Alias'),
 					FormItem::textarea('description', 'Description'),
+					FormItem::select('user_id', 'User')->model('App\User')->display('name')->defaultValue(AdminAuth::User()->id)->nullable(),
+					FormItem::multiselect('tag', 'Tag')->model('App\Tag')->display('lable')
 				],[
 					FormItem::jSelect('menu_id', 'Menu id')->options(Model_Menu::getNestedList('level_lable'))->nullable(),
-					FormItem::multiselect('accessPages', 'Access')->model('App\Role')->display('name'),
+					FormItem::text('policies', 'Policies'),
 
-					FormItem::select('template', 'Template')->options($templateOptions),
+					$this->formTemplateField(),
 
 					FormItem::timestamp('publish', 'Publish')->defaultValue(Carbon::now()),
 					FormItem::text('sort', 'Sort'),
-					FormItem::checkbox('list_in')->label('List in')->defaultValue(true),
+
+					$this->formContextField(),
+
 					FormItem::checkbox('active')->label('Active'),
 
-					FormItem::jBottonLink()->url('page_fields?page=:id')->label('Дополнительные поля')->labelNonObject('Требуется сохранить объект')
+					FormItem::jBottonLink()->url('fields?page=:id')->label('Дополнительные поля')->labelNonObject('Требуется сохранить объект'),
 				],
 			]),
 
 			FormItem::ckeditor('content', 'Content'),
 			FormItem::image('image', 'Image'),
 		];
+	}
+
+	public function formTemplateField()
+	{
+		return FormItem::select('template', 'Template')->options(['main'=>'Основной | main'])->defaultValue('main');
+	}
+
+	public function formContextField()
+	{
+		return FormItem::text('context', 'Context')->defaultValue('page'); //->readonly('readonly')
 	}
 }

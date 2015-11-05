@@ -31,6 +31,7 @@ class Role extends BaseController
 	public function column ()
 	{
 		return [
+			Column::checkbox(),
 			Column::string('name')->label('Name'),
 			Column::custom()->label('Users')->callback(function ($instance)
 			{

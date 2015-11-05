@@ -137,18 +137,26 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        SleepingOwl\Admin\AdminServiceProvider::class,
-        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
-        Baum\Providers\BaumServiceProvider::class,
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		
-		Intervention\Image\ImageServiceProvider::class,
+        
+        Barryvdh\Debugbar\ServiceProvider::class,
 
+        JetCMS\Admin\AdminServiceProvider::class,
+        JetCMS\Models\ModelsServiceProvider::class,
+
+        Baum\Providers\BaumServiceProvider::class,
+        SleepingOwl\Admin\AdminServiceProvider::class,
+        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
+        
+        Intervention\Image\ImageServiceProvider::class,
+
+        JetCMS\Website\WebsiteServiceProvider::class,
     ],
 
     /*
@@ -177,6 +185,7 @@ return [
         'Eloquent'  => Illuminate\Database\Eloquent\Model::class,
         'Event'     => Illuminate\Support\Facades\Event::class,
         'File'      => Illuminate\Support\Facades\File::class,
+        'Gate'      => Illuminate\Support\Facades\Gate::class,
         'Hash'      => Illuminate\Support\Facades\Hash::class,
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Inspiring' => Illuminate\Foundation\Inspiring::class,
@@ -198,8 +207,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Carbon' => Carbon\Carbon::class,
-		'Image' =>  Intervention\Image\Facades\Image::class,
-		
+        'Image' =>  Intervention\Image\Facades\Image::class,
+        
         'Admin'         => SleepingOwl\Admin\Admin::class,
         'AdminAuth'     => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
 
@@ -210,6 +219,8 @@ return [
         'AdminForm'     => SleepingOwl\Admin\Form\AdminForm::class,
         'AdminTemplate' => SleepingOwl\Admin\Templates\Facade\AdminTemplate::class,
         'FormItem'      => SleepingOwl\Admin\FormItems\FormItem::class,
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
