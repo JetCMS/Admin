@@ -36,7 +36,7 @@ class Field extends BaseController
 			$display = $this->display();
 
 			$display->filters($thisInitModel->filters());
-			$display->columnFilters($thisInitModel->columnFilters());			
+			$display->columnFilters($thisInitModel->columnFilters());
 			$display->columns($thisInitModel->column());
 
 			return $display;
@@ -71,7 +71,7 @@ class Field extends BaseController
 	protected function columnFilters ()
 	{
 		return [
-			Column::checkbox(),
+			null,
 			ColumnFilter::text(),
 			ColumnFilter::text(),
 			(Input::has('page')) ? null : ColumnFilter::select()->model('App\Page')->display('title')
@@ -81,6 +81,7 @@ class Field extends BaseController
 	public function column ()
 	{
 		return [
+			Column::checkbox(),
 			Column::string('name')->label('Name'),
 			Column::string('value')->label('Value'),
 			Column::string('page.id')->label('Page ID')->orderable(false),

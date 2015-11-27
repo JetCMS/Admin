@@ -16,6 +16,8 @@ class Page extends BaseController
 
 	protected $import_disble = ['page_field_to_array','make_alias','fields'];
 	protected $import_model_name = 'page';
+	protected $formTemplateField = ['main'=>'Основной | main'];
+
 
 	public function getModelClass()
 	{
@@ -89,7 +91,6 @@ class Page extends BaseController
 
 	public function create ()
 	{
-
 		return [
 			FormItem::columns()->columns([
 		       	[
@@ -117,12 +118,13 @@ class Page extends BaseController
 
 			FormItem::ckeditor('content', 'Content'),
 			FormItem::image('image', 'Image'),
+			FormItem::images('gallery', 'Gallery'),
 		];
 	}
 
 	public function formTemplateField()
 	{
-		return FormItem::select('template', 'Template')->options(['main'=>'Основной | main'])->defaultValue('main');
+		return FormItem::select('template', 'Template')->options($this->formTemplateField)->defaultValue('main');
 	}
 
 	public function formContextField()
