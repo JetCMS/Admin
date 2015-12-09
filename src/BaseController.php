@@ -96,7 +96,7 @@ class BaseController
 
 		$display->attributes([
 		    'ordering' => true,
-		    'stateSave' => false,
+		    'stateSave' => true,
 		]);
 
 		$display->actions($this->importAction());
