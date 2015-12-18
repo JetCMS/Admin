@@ -6,6 +6,9 @@ use Column;
 use FormItem;
 use Carbon;
 
+use AdminForm;
+use AdminDisplay;
+
 use App\Page as Model_Page;
 use App\Menu as Model_Menu;
 
@@ -117,9 +120,39 @@ class Page extends BaseController
 			]),
 
 			FormItem::ckeditor('content', 'Content'),
-			FormItem::image('image', 'Image'),
-			FormItem::images('gallery', 'Gallery'),
+
+			FormItem::columns()->columns([
+				[
+					$this->createField(),
+				],[
+					FormItem::image('image', 'Image'),
+					FormItem::images('gallery', 'Gallery'),
+				]
+
+			]),
 		];
+	}
+
+	protected function createField(){
+		return FormItem::jMigx('field_array', 'Fields')->options([
+			'description' => ['type'=>'textarea','lable'=>'Описание в списке новостей'],
+			'title' => ['type'=>'text','lable'=>'Заголовок в списке новостей'],
+		]);
+	}
+
+
+	protected function getForm($modelId) {
+
+		$form = AdminForm::form();
+		$form->items($this->create());
+
+		$display = AdminDisplay::tabbed();
+		return $display->tabs(function () use ($form)
+		{
+			$tabs = [];
+			$tabs[] = AdminDisplay::tab($form)->label('Основное')->active(true);
+			return $tabs;
+		});
 	}
 
 	public function formTemplateField()

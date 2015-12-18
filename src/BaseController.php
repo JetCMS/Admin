@@ -81,12 +81,9 @@ class BaseController
 			}
 
 			return $display;
-		})->createAndEdit(function ($modelId) use($thisInitModel)
+		})->createAndEdit(function ($callback) use($thisInitModel)
 		{
-			$this->modelId = $modelId;
-			$form = AdminForm::form();	
-			$form->items($thisInitModel->create());
-			return $form;
+			return $thisInitModel->getForm($callback);
 		});
 	}
 
@@ -121,6 +118,12 @@ class BaseController
 			Column::string('name')->label('Name'),
 			Column::string('email')->label('Email'),
 		];
+	}
+
+	protected function form($callback) {
+		$this->modelId = $callback;
+		$form = AdminForm::getForm();
+		return $form->items($this->create());
 	}
 
 	public function create ()
