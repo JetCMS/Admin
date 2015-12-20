@@ -120,9 +120,9 @@ class BaseController
 		];
 	}
 
-	protected function form($callback) {
+	protected function getForm($callback) {
 		$this->modelId = $callback;
-		$form = AdminForm::getForm();
+		$form = AdminForm::form();
 		return $form->items($this->create());
 	}
 
