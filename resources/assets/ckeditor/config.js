@@ -49,7 +49,7 @@ CKEDITOR.editorConfig = function (config) {
 	CKEDITOR.config.simpleImageBrowserURL = '/' + window.admin.prefix + '/assets/images/all';
 	CKEDITOR.config.language = window.admin.locale;
 	config.filebrowserImageUploadUrl = '/' + window.admin.prefix + '/assets/images/upload';
-
+	config.contentsCss  = '/css/ckeditor.css';
 	//config.allowedContent = true;
 
 	$.extend(config, window.admin.ckeditor_cfg);

@@ -28,69 +28,28 @@ CKEDITOR.stylesSet.add('default', [
 		{ name: 'Heading 5',		element: 'h5' },
 		{ name: 'Heading 6',		element: 'h6' },
 		*/
-		{ name: 'jet-ol',element: 'ol',attributes: {
-		 		class:'jet-ol'
+		{ name: 'print-ol',element: 'ol',attributes: {
+		 		class:'print-ol'
 			} 
 		},
 
-		{ name: 'jet-ol-small',element: 'ol',attributes: {
-		 		class:'jet-ol-small'
+		{ name: 'print-ol-small',element: 'ol',attributes: {
+		 		class:'print-ol-small'
 			} 
 		},
 
-		{ name: 'jet-p-indent',element: 'p',attributes: {
-		 		class:'jet-p-indent'
-			} 
-		},
-
-		{ name: 'jet-h2-marker-block', element: 'h2',attributes: {
-		 		class:'jet-marker-block'
-			} 
-		},
-		{ name: 'jet-h3-marker-block', element: 'h3',attributes: {
-		 		class:'jet-marker-block'
-			} 
-		},
-		{ name: 'jet-h4-marker-block', element: 'h4',attributes: {
-		 		class:'jet-marker-block'
-			} 
-		},
-		{ name: 'jet-p-marker-block', element: 'p',attributes: {
-		 		class:'jet-marker-block'
-			} 
-		},
-
-		{ name: 'jet-h1-title-underline', element: 'h1',attributes: {
-		 		class:'jet-title-underline'
-			} 
-		},
-		{ name: 'jet-h2-title-underline', element: 'h2',attributes: {
-		 		class:'jet-title-underline'
-			} 
-		},
-
-		{ name: 'h1-primary-center', element: 'h1',attributes: {
-		 		class:'text-primary text-center'
-			} 
-		},
-
-		{ name: 'h2-primary-center', element: 'h2',attributes: {
-		 		class:'text-primary text-center'
-			} 
-		},
-
-		{ name: 'h3-primary-center', element: 'h3',attributes: {
-		 		class:'text-primary text-center'
+		{ name: 'print-p-indent',element: 'p',attributes: {
+		 		class:'print-p-indent'
 			} 
 		},
 
 		{ name: 'fa-ul-check', element: 'ul',attributes: {
-		 		class:'fa-ul jet-fa-check',
+		 		class:'fa-ul print-fa-check',
 			} 
 		},
 
 		{ name: 'fa-ul-arrow', element: 'ul',attributes: {
-		 		class:'fa-ul jet-fa-arrow',
+		 		class:'fa-ul print-fa-arrow',
 			} 
 		},
 
