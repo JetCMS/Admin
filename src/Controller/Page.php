@@ -96,9 +96,22 @@ class Page extends BaseController
 	{
 		return [
 			FormItem::columns()->columns([
-		       	[
+				[
 					FormItem::text('title', 'Title')->required(),
-					FormItem::text('alias', 'Alias'),
+					FormItem::text('alias', 'Alias')->required(),
+					$this->formContextField()
+				]
+			]),
+		];
+	}
+
+	public function update ()
+	{
+		return [
+			FormItem::columns()->columns([
+				[
+					FormItem::text('title', 'Title')->required(),
+					FormItem::text('alias', 'Alias')->required(),
 					FormItem::textarea('description', 'Description'),
 					FormItem::select('user_id', 'User')->model('App\User')->display('name')->defaultValue(AdminAuth::User()->id)->nullable(),
 					FormItem::multiselect('tag', 'Tag')->model('App\Tag')->display('lable')

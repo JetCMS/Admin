@@ -81,10 +81,20 @@ class BaseController
 			}
 
 			return $display;
-		})->createAndEdit(function ($callback) use($thisInitModel)
+		})->create(function ($callback) use($thisInitModel){
+			return $thisInitModel->getFormCreate($callback);
+		})
+		->edit(function ($callback) use($thisInitModel){
+			return $thisInitModel->getFormEdit($callback);
+		});
+
+
+			/*
+			->createAndEdit(function ($callback) use($thisInitModel)
 		{
 			return $thisInitModel->getForm($callback);
 		});
+			*/
 	}
 
 	protected function display()
@@ -120,10 +130,16 @@ class BaseController
 		];
 	}
 
-	protected function getForm($callback) {
+	protected function getFormCreate($callback) {
 		$this->modelId = $callback;
 		$form = AdminForm::form();
 		return $form->items($this->create());
+	}
+
+	protected function getFormEdit($callback) {
+		$this->modelId = $callback;
+		$form = AdminForm::form();
+		return $form->items($this->update());
 	}
 
 	public function create ()
