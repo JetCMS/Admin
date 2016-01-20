@@ -14,7 +14,7 @@
         "jetcms/sleeping-owl": "2.0.44",
         "jetcms/sleeping-owl-admin-lte-template": "0.0.0",
         "jetcms/models": "dev-master",
-        "maatwebsite/excel": "v2.0.10",
+        "maatwebsite/excel": "v2.1.1",
         "barryvdh/laravel-ide-helper": "v2.1.0",
         "barryvdh/laravel-debugbar": "^2.0"
     },
